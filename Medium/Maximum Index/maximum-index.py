@@ -30,13 +30,34 @@ class Solution:
         #     else:
         #         i += 1
         # return md
-        m=0
-        for i in range(n):
-            for j in range(n-1,1,-1):
-                if a[j]>=a[i]:
-                    m=max(m,j-i)
-                    break
-        return m
+        # m=0
+        # for i in range(n):
+        #     for j in range(n-1,1,-1):
+        #         if a[j]>=a[i]:
+        #             m=max(m,j-i)
+        #             break
+        # return m
+       
+        max_diff = -1
+        left_min = [0] * n
+        right_max = [0] * n
+        left_min[0] = a[0]
+        for i in range(1, n):
+            left_min[i] = min(a[i], left_min[i - 1])
+        right_max[n - 1] = a[n - 1]
+        for i in range(n - 2, -1, -1):
+            right_max[i] = max(a[i], right_max[i + 1])
+
+        i = j = 0
+        while i < n and j < n:
+            if left_min[i] <= right_max[j]:
+                max_diff = max(max_diff, j - i)
+                j += 1
+            else:
+                i += 1
+    
+        return max_diff
+
 
         
         
