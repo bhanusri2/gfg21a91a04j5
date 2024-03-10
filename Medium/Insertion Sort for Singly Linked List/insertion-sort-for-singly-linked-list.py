@@ -10,23 +10,24 @@ class Node:
 
 class Solution:
     def insertionSort(self, head):
-        #code here
-        current=head
-        p=[]
-        while current is not None:
-            p.append(current.data)
-            current=current.next
-        p.sort()
-        head=Node(p[0])
-        current=head
-        if not p:
-            return 0
-        for i in p[1:]:
-            current.next=Node(i)
-            current=current.next
-        return head
-        
-            
+        def fun(head):
+            current = head
+            result = []
+            while current is not None:
+                result.append(current.data)
+                current = current.next
+            return result
+        l1=fun(head)
+        l1.sort()
+        if not l1:
+            return None
+        head = Node(l1[0])
+        current = head
+        for value in l1[1:]:
+            current.next = Node(value)
+            current = current.next
+    
+        return head     
 
 
 #{ 
